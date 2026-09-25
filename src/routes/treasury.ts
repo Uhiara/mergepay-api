@@ -104,6 +104,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
       await auditTx(tx, {
         userId: auth.id,
         groupId: id,
+        actorPublicKey: auth.stellarPublicKey,
         action: AuditAction.TREASURY_ENABLE,
         entityType: "group",
         entityId: id,
@@ -194,6 +195,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
     await audit({
       userId: auth.id,
       groupId: id,
+      actorPublicKey: auth.stellarPublicKey,
       action: AuditAction.TREASURY_SIGNER_VALIDATION,
       entityType: "group",
       entityId: id,
@@ -301,6 +303,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
         await auditTx(tx, {
           userId: auth.id,
           groupId: id,
+          actorPublicKey: auth.stellarPublicKey,
           action: AuditAction.TREASURY_DEPOSIT_CREATE,
           entityType: "treasury_transaction",
           entityId: ttx.id,
@@ -421,6 +424,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
         await auditTx(tx, {
           userId: auth.id,
           groupId: id,
+          actorPublicKey: auth.stellarPublicKey,
           action: AuditAction.TREASURY_WITHDRAW_CREATE,
           entityType: "treasury_transaction",
           entityId: ttx.id,
@@ -570,6 +574,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
           await auditTx(tx, {
             userId: auth.id,
             groupId: fresh.groupId,
+            actorPublicKey: auth.stellarPublicKey,
             action: AuditAction.TREASURY_CONFIRM_FAILED,
             entityType: "treasury_transaction",
             entityId: id,
@@ -591,6 +596,7 @@ export default async function treasuryRoutes(app: FastifyInstance) {
         await auditTx(tx, {
           userId: auth.id,
           groupId: fresh.groupId,
+          actorPublicKey: auth.stellarPublicKey,
           action: AuditAction.TREASURY_CONFIRM,
           entityType: "treasury_transaction",
           entityId: id,
